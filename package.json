@@ -1,0 +1,11 @@
+{
+  "name": "lease-audit-copilot",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npm --prefix lease-audit-ui run dev",
+    "build": "npm --prefix lease-audit-ui run build",
+    "test": "npm --prefix lease-audit-ui run test",
+    "lint": "npm --prefix lease-audit-ui run lint"
+  }
+}
