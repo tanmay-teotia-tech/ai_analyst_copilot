@@ -1,0 +1,141 @@
+{
+  "components": [
+    {
+      "id": "webhook_1",
+      "provider": "webhook",
+      "config": {
+        "hideForm": true,
+        "mode": "Source",
+        "parameters": {},
+        "type": "webhook"
+      },
+      "ui": {
+        "position": { "x": 20, "y": 200 },
+        "measured": { "width": 150, "height": 66 },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "parse_1",
+      "provider": "parse",
+      "config": {},
+      "input": [
+        { "lane": "tags", "from": "webhook_1" }
+      ],
+      "ui": {
+        "position": { "x": 240, "y": 200 },
+        "measured": { "width": 150, "height": 66 },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "prompt_1",
+      "provider": "prompt",
+      "config": {
+        "instructions": [
+          "You are a lease audit analyst. You will receive a lease summary and an operating expense bill. Your task is to compare each bill line item against the lease's allowed/excluded expense rules and produce a structured finding.",
+          "",
+          "LEASE RULES (from lease summary):",
+          "- Tenant pays 15% of Building Operating Expenses (Clause 4.1)",
+          "- INCLUDED expenses (Clause 4.2): real estate taxes, insurance, common area utilities, janitorial, security, landscaping, HVAC maintenance, elevator maintenance, property management fees (capped at 4%), common area capital improvements (amortized)",
+          "- EXCLUDED expenses (Clause 4.3): capital expenditures for structural repairs (roof, foundation, load-bearing walls), landlord legal fees unrelated to building operations, marketing/leasing commissions, depreciation, costs to cure landlord defaults, penalties/fines, environmental remediation pre-lease, landlord overhead/admin salaries not building-related, costs for services not provided, expenses for other tenant spaces not benefiting this tenant",
+          "- Audit rights: 180 days from annual statement (Clause 4.4)",
+          "- Gross-up at 80% occupancy if below (Clause 4.5)",
+          "",
+          "For each bill, produce ONE finding with these exact fields:",
+          "1. bill_name (string): e.g., \"Westside Centre - May 2026\"",
+          "2. status (enum): \"safe\" | \"needs_review\" | \"likely_overcharge\"",
+          "3. reason (string): plain-language explanation",
+          "4. evidence (string): exact lease/bill excerpts used, e.g., \"Lease Clause 4.3; bill lines 11-14\"",
+          "5. amount_at_risk (string): e.g., \"$1,240\" (total excluded amounts × 15%)",
+          "6. confidence (number 0-100 or \"low\"/\"medium\"/\"high\")",
+          "",
+          "HARD SAFETY RULES:",
+          "- If any required field cannot be determined → status \"needs_review\" with reason describing what's missing",
+          "- NEVER invent a clause, amount, or legal conclusion",
+          "- When in doubt, downgrade to needs_review rather than guess",
+          "- Only flag \"likely_overcharge\" when bill clearly contains excluded expense categories with identifiable amounts",
+          "- \"safe\" only when all bill items map to allowed categories in Clause 4.2"
+        ],
+        "parameters": {}
+      },
+      "input": [
+        { "lane": "text", "from": "parse_1" },
+        { "lane": "questions", "from": "parse_1" }
+      ],
+      "ui": {
+        "position": { "x": 460, "y": 200 },
+        "measured": { "width": 150, "height": 66 },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "llm_anthropic_1",
+      "provider": "llm_anthropic",
+      "config": {
+        "profile": "claude-sonnet-4-6",
+        "claude-sonnet-4-6": {
+          "apikey": "${ROCKETRIDE_ANTHROPIC_KEY}"
+        },
+        "parameters": {}
+      },
+      "control": [
+        { "classType": "llm", "from": "prompt_1" }
+      ],
+      "ui": {
+        "position": { "x": 460, "y": 360 },
+        "measured": { "width": 150, "height": 66 },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "extract_data_1",
+      "provider": "extract_data",
+      "config": {
+        "profile": "default",
+        "default": {
+          "fields": [
+            { "column": "bill_name", "type": "text", "defval": "" },
+            { "column": "status", "type": "text", "defval": "needs_review" },
+            { "column": "reason", "type": "text", "defval": "" },
+            { "column": "evidence", "type": "text", "defval": "" },
+            { "column": "amount_at_risk", "type": "text", "defval": "" },
+            { "column": "confidence", "type": "text", "defval": "low" }
+          ]
+        }
+      },
+      "input": [
+        { "lane": "questions", "from": "prompt_1" }
+      ],
+      "ui": {
+        "position": { "x": 680, "y": 200 },
+        "measured": { "width": 150, "height": 66 },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    },
+    {
+      "id": "response_answers_1",
+      "provider": "response_answers",
+      "config": {
+        "laneName": "findings"
+      },
+      "input": [
+        { "lane": "answers", "from": "extract_data_1" }
+      ],
+      "ui": {
+        "position": { "x": 900, "y": 200 },
+        "measured": { "width": 150, "height": 66 },
+        "nodeType": "default",
+        "formDataValid": true
+      }
+    }
+  ],
+  "project_id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+  "viewport": { "x": 0, "y": 0, "zoom": 1 },
+  "version": 1
+}
