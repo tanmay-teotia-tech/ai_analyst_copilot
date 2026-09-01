@@ -1,0 +1,39 @@
+COMMERCIAL LEASE AGREEMENT - SUMMARY
+
+Property: Westside Centre, 123 Main Street, Suite 400
+Tenant: Acme Corporation
+Landlord: Westside Properties LLC
+Lease Term: January 1, 2024 - December 31, 2028 (5 years)
+Base Rent: $25,000/month
+
+OPERATING EXPENSE PROVISIONS (Article 4)
+
+Clause 4.1 - Tenant's Share: Tenant shall pay 15% of Building Operating Expenses as Additional Rent.
+
+Clause 4.2 - Included Expenses: Operating Expenses include:
+- Real estate taxes and assessments
+- Insurance premiums (property, liability, casualty)
+- Utilities for common areas (electricity, water, gas)
+- Janitorial and cleaning services for common areas
+- Security services for the building
+- Landscaping and grounds maintenance
+- HVAC maintenance and repair for common areas
+- Elevator maintenance and inspection
+- Property management fees (capped at 4% of gross collected rents)
+- Common area capital improvements (amortized over useful life)
+
+Clause 4.3 - Excluded Expenses: The following are EXCLUDED from Operating Expenses and shall NOT be charged to Tenant:
+- Capital expenditures for structural repairs (roof, foundation, load-bearing walls)
+- Landlord's legal fees unrelated to building operations
+- Landlord's marketing and leasing commissions
+- Depreciation on building or equipment
+- Costs to cure Landlord's defaults under this or other leases
+- Penalties, fines, or late fees incurred by Landlord
+- Costs of remediating environmental contamination existing prior to Lease commencement
+- Landlord's overhead and administrative salaries not directly related to building operations
+- Costs for services not actually provided to the building
+- Expenses for space leased to other tenants not benefiting Tenant
+
+Clause 4.4 - Audit Rights: Tenant shall have the right to audit Landlord's operating expense records within 180 days of receiving the annual reconciliation statement.
+
+Clause 4.5 - Gross-Up Provision: If building occupancy is below 80%, Operating Expenses shall be grossed up to 80% occupancy for calculation purposes.

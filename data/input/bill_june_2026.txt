@@ -1,0 +1,29 @@
+WESTSIDE CENTRE - OPERATING EXPENSE STATEMENT
+Billing Period: June 2026
+Statement Date: July 15, 2026
+Tenant: Acme Corporation, Suite 400
+
+BUILDING OPERATING EXPENSES - JUNE 2026
+
+1. Real Estate Taxes (Monthly Allocation)          $45,000.00
+2. Property Insurance Premium                       $12,500.00
+3. Common Area Electricity                          $7,800.00
+4. Common Area Water & Sewer                        $3,200.00
+5. Janitorial Services (Common Areas)              $15,600.00
+6. Security Services                                $22,000.00
+7. Landscaping & Grounds Maintenance               $6,800.00
+8. HVAC Maintenance (Common Areas)                 $9,500.00
+9. Elevator Maintenance & Inspection               $4,200.00
+10. Property Management Fee (4% of Gross Rents)     $18,000.00
+11. Common Area Carpet Replacement (Amortized)      $2,500.00
+
+TOTAL BUILDING OPERATING EXPENSES:                $147,100.00
+
+TENANT'S SHARE (15%):                             $22,065.00
+
+AMOUNT DUE FROM TENANT:                           $22,065.00
+
+---
+Notes:
+- All expenses are allowed per Lease Clause 4.2
+- Line 11: Common area capital improvement amortized over useful life (allowed per 4.2)
